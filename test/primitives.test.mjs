@@ -31,8 +31,8 @@ const FIXTURE = [
 ].join('\n');
 const vueTwin = FIXTURE.replace('from "obix"', 'from "vue"');
 
-test('the registry: ref and computed, each Vue’s primitive of that name — and nothing else until another entry is proven', () => {
-  assert.deepEqual(OBIX_AUTHORING_PRIMITIVES, { computed: { module: 'vue', export: 'computed' }, ref: { module: 'vue', export: 'ref' } });
+test('the registry: ref, computed (C1) and watch (D-104), each Vue’s primitive of that name — and nothing else until another entry is proven', () => {
+  assert.deepEqual(OBIX_AUTHORING_PRIMITIVES, { computed: { module: 'vue', export: 'computed' }, ref: { module: 'vue', export: 'ref' }, watch: { module: 'vue', export: 'watch' } });
   assert.ok(Object.isFrozen(OBIX_AUTHORING_PRIMITIVES) && Object.values(OBIX_AUTHORING_PRIMITIVES).every(Object.isFrozen));
 });
 
@@ -72,10 +72,10 @@ test('a renamed import resolves by the name it imports; a type-only import resol
 
 test('no blanket rule: a name from "obix" that the registry does not list is an unregistered authoring name — even one Vue exports; other modules resolve to nothing', () => {
   const r = compileObixScriptSetup(
-    sfc('<script setup>\nimport { watch, reactive, defineTuner } from "obix";\nimport { watch as vueWatch } from "vue";\nimport Child from "./Child.vue";\nimport { helper } from "./helper";\n</script>\n'),
+    sfc('<script setup>\nimport { watchEffect, reactive, defineTuner } from "obix";\nimport { watch as vueWatch } from "vue";\nimport Child from "./Child.vue";\nimport { helper } from "./helper";\n</script>\n'),
   );
   assert.deepEqual(r.artifact.resolutions.map((x) => [x.local, x.primitive]), [
-    ['watch', 'unregistered-authoring'],
+    ['watchEffect', 'unregistered-authoring'],
     ['reactive', 'unregistered-authoring'],
     ['defineTuner', 'unregistered-authoring'],
     ['vueWatch', { module: 'vue', export: 'watch' }],

@@ -19,10 +19,15 @@ const VUE_MODULE = "vue";
 
 const primitive = (name: string): VuePrimitive => Object.freeze({ module: VUE_MODULE, export: name });
 
-/** The registry: an authoring name → the Vue primitive it is proven to mean. `ref` and `computed` — nothing else until another entry has its proof. */
+/**
+ * The registry: an authoring name → the Vue primitive it is proven to mean. `ref` and `computed` (C1), `watch` (D-104: the same IR as `watch` from "vue", and the
+ * same frames on real Vue, the IR's evaluator and the native runtime — tests/runtime/obix-watch.test.mjs; a form the IR does not represent defers exactly as it
+ * does from "vue") — nothing else until another entry has its proof.
+ */
 export const OBIX_AUTHORING_PRIMITIVES: Readonly<Record<string, VuePrimitive>> = Object.freeze({
   computed: primitive("computed"),
   ref: primitive("ref"),
+  watch: primitive("watch"),
 });
 
 /** The part of a Babel import declaration the resolution reads. */
