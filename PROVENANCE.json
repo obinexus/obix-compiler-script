@@ -26,7 +26,7 @@
   "export": {
     "from": "https://github.com/obinexusmk2/obix-monorepo",
     "branch": "recovery/obix-api-preserving-rebuild",
-    "commit": "a67fef1c0c3920fa35056f8c0a1b7816f3f88d53",
+    "commit": "31a7db10a098654cd4cf2e26cbd293b01f36f7ec",
     "directory": "compiler/obix-compiler-script",
     "exportedBy": "scripts/release/export-repos.mjs",
     "note": "a clean initial commit of this package; the monorepo history is not imported (D-103). Local machine paths in this record are replaced by <local workspace>."
