@@ -1,0 +1,58 @@
+{
+  "name": "obix-compiler-script",
+  "version": "0.5.0",
+  "description": "The Vue script frontend of the .obix compiler: compiles the normal <script> (JavaScript or TypeScript) of a canonical SFC with the OFFICIAL Vue script compiler (@vue/compiler-sfc compileScript) into a typed frontend artifact — the compiled module, the binding metadata the template stage needs, the imports and the Babel AST — and reports what the compiler says under OBIX-owned diagnostic codes, with file-absolute locations. Also the shared core of the script stages: obix-compiler-script-setup is built on it. Phase 3 of the VueTS compiler recovery (docs/recovery/vuets-compiler.md).",
+  "license": "MIT",
+  "author": "Nnamdi Michael Okpala <okpalan@protonmail.com>",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test \"test/*.test.mjs\""
+  },
+  "dependencies": {
+    "obix-compiler-diagnostics": "0.5.0",
+    "obix-compiler-sfc": "0.5.0",
+    "@vue/compiler-sfc": "3.5.43"
+  },
+  "devDependencies": {
+    "obix-compiler-parser": "0.5.0"
+  },
+  "keywords": [
+    "obix",
+    "compiler",
+    "vue",
+    "script"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/obinexus/obix-compiler-script.git"
+  },
+  "bugs": {
+    "url": "https://github.com/obinexus/obix-compiler-script/issues"
+  },
+  "homepage": "https://github.com/obinexus/obix-compiler-script#readme"
+}
